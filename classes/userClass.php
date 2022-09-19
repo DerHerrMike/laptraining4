@@ -17,9 +17,14 @@ class User extends Connection
         $stmt->execute([$email, $password]);
         echo '<div class="success"> Registration successful!</div>';
         header("Refresh:2; url=login.php");
+        return true;
     }
 
-    public function isEmailavailable($email): bool
+    /**
+     * @param $email
+     * @return bool
+     */
+    private function isEmailavailable($email): bool
     {
         $sql = "SELECT * FROM user WHERE email = ?";
         $stmt = $this->connect()->prepare($sql);
@@ -31,6 +36,10 @@ class User extends Connection
         }
     }
 
+    /**
+     * @param $email
+     * @param $password
+     */
     public function login($email, $password)
     {
 
@@ -53,8 +62,17 @@ class User extends Connection
             } else {
                 $_SESSION['user_details'] = true;
             }
-            header('Refresh:4; url=shop.php?' . $_SESSION['user_id']);
+            header('Refresh:1; url=shop.php?' . $_SESSION['user_id']);
         }
+    }
+
+    public function updateUserDetails($user_id, $first_name, $last_name, $street, $number, $zip, $city, $country) {
+        $sql = "UPDATE user SET first_name = ?, last_name = ?, street = ?, number = ?, zip = ?, city = ?, country = ? WHERE id = ?";
+        $stmt = $this->connect()->prepare($sql);
+        $stmt->execute([$first_name, $last_name, $street, $number, $zip, $city, $country, $user_id]);
+        $_SESSION['user_details'] = true;
+        echo 'User data saved successfully.';
+        header('Refresh:1; url=order.php');
     }
 
 

@@ -3,7 +3,7 @@
     height: 7vh;
     background:  var(--bg_dark);
     display: grid;
-    grid-template-columns: 15% 35% 35% 15%;
+    grid-template-columns: 15% 30% 30% 25%;
     grid-template-areas:
     "tlogo mainlinks mainlinks userlinks";
 }
