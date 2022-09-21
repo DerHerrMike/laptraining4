@@ -23,7 +23,7 @@ class Cart extends Connection
             $stmt = $this->connect()->prepare($sql);
             $stmt->execute([$user_id, $product_id, $product_name, $price, $quantity]);
             echo 'Item added successfully';
-            header('Refresh:2; url=shop.php');
+            header('Refresh:1; url=shop.php');
         } else {
             $this->updateQuantity($quantity, $product_id, $user_id);
         }
@@ -40,7 +40,7 @@ class Cart extends Connection
         $stmt = $this->connect()->prepare($sql);
         $stmt->execute([$quantity, $product_id, $user_id]);
         echo 'Quantity updated';
-        header('Refresh:2; url=shop.php');
+        header('Refresh:1; url=shop.php');
     }
 
     /**
@@ -65,7 +65,7 @@ class Cart extends Connection
         $stmt = $this->connect()->prepare($sql);
         $stmt->execute([$user_id]);
         $result = $stmt->fetchAll();
-        foreach ($result as $row){
+        foreach ($result as $row) {
             $sql = 'INSERT INTO laptraining4.orders (user_id, product_id, product_name, product_price, quantity, date) VALUES (?, ?, ?, ?, ?, ?)';
             $stmt = $this->connect()->prepare($sql);
             $stmt->execute([$user_id, $row['product_id'], $row['product_name'], $row['product_price'], $row['quantity'], $date]);
@@ -74,7 +74,6 @@ class Cart extends Connection
         $this->emptyCart($user_id);
 
         header('Refresh: 1; url=order.php');
-
     }
 
     /**
@@ -104,11 +103,9 @@ class Cart extends Connection
      */
     public function removeItemFromCart($user_id, $product_id)
     {
-
         $sql = 'DELETE FROM cart WHERE user_id = ? AND product_id = ?';
         $stmt = $this->connect()->prepare($sql);
         $stmt->execute([$user_id, $product_id]);
-        header('Refresh:5; url=cart.php');
+        header('Refresh:1; url=cart.php');
     }
-
 }

@@ -1,61 +1,69 @@
-.nav{
+.nav {
     width: 100%;
     height: 7vh;
-    background:  var(--bg_dark);
+    background: var(--bg_dark);
     display: grid;
     grid-template-columns: 15% 30% 30% 25%;
     grid-template-areas:
     "tlogo mainlinks mainlinks userlinks";
 }
 
-a{
+a {
     color: var(--color-white-dark);
     text-decoration: none;
 }
-a.link{
+
+a.link {
     color: black;
     text-decoration: none;
 }
-.textlogo{
+
+.textlogo {
     grid-area: tlogo;
     text-align: center;
 }
-.textlogo a{
+
+.textlogo a {
     font-size: 26px;
     line-height: 7vh;
 }
 
-.mainlinks{
+.mainlinks {
     grid-area: mainlinks;
     text-align: center;
 }
-.mainlinks a{
-    display :inline-block;
+
+.mainlinks a {
+    display: inline-block;
     height: 7vh;
     font-size: 16px;
     line-height: 7vh;
     padding: 0px 20px;
 }
-.mainlinks a:hover{
+
+.mainlinks a:hover {
     background: var(--color-grey);
     color: var(--color-white);
 }
 
-.userlinks{
+.userlinks {
     grid-area: userlinks;
     text-align: center;
 }
-.userlinks a{
-    display :inline-block;
+
+.userlinks a {
+    display: inline-block;
     height: 7vh;
     font-size: 16px;
     line-height: 7vh;
     padding: 0px 20px;
 }
-.userlinks a:hover{
+
+.userlinks a:hover {
     background: var(--color-grey);
     color: var(--color-white);
 }
-.content{
-    padding:40px;
+
+.content {
+    padding: 40px;
 }

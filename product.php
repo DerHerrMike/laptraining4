@@ -4,9 +4,7 @@ include __DIR__ . '/inc/header.php';
 $product_id = $_GET['pid'];
 include 'classes/productClass.php';
 include 'classes/cartClass.php';
-?>
 
-<?php
 if (!isset($_SESSION['logged_in'])) { ?>
 
     <div class="content">
@@ -37,8 +35,7 @@ if (!isset($_SESSION['logged_in'])) { ?>
             <p>Please log in to add items to your shopping cart!</p>
         </div>
     </div>
-<?php }
-else { ?>
+<?php } else { ?>
     <div class="content">
 
         <div class="container_small">
@@ -83,4 +80,4 @@ if (isset($_POST['add_btn'])) {
         echo $e->getMessage();
     }
 }
-include './inc/footer.php'; ?>
+include 'inc/footer.php'; ?>

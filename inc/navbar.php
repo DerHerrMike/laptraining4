@@ -27,10 +27,8 @@
             <?php } else { ?>
                 <a href="/laptraining4/profile.php">Profile</a>
                 <a href="/laptraining4/logout.php">Logout</a>
-
             <?php }
         } ?>
 
     </div>
-
 </div>

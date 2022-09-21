@@ -1,5 +1,5 @@
 <?php
-include_once __DIR__ . '/../inc/connection.php';
+require_once __DIR__ . '/../inc/connection.php';
 
 class User extends Connection
 {
@@ -16,7 +16,7 @@ class User extends Connection
         $stmt = $this->connect()->prepare($sql);
         $stmt->execute([$email, $password]);
         echo '<div class="success"> Registration successful!</div>';
-        header("Refresh:2; url=login.php");
+        header("Refresh:1.5; url=login.php");
         return true;
     }
 
@@ -42,7 +42,6 @@ class User extends Connection
      */
     public function login($email, $password)
     {
-
         $sql = "SELECT * FROM user WHERE email = ?";
         $stmt = $this->connect()->prepare($sql);
         $stmt->execute([$email]);
@@ -62,11 +61,12 @@ class User extends Connection
             } else {
                 $_SESSION['user_details'] = true;
             }
-            header('Refresh:1; url=shop.php?' . $_SESSION['user_id']);
+            header('Refresh:1; url=shop.php?');
         }
     }
 
-    public function updateUserDetails($user_id, $first_name, $last_name, $street, $number, $zip, $city, $country) {
+    public function updateUserDetails($user_id, $first_name, $last_name, $street, $number, $zip, $city, $country)
+    {
         $sql = "UPDATE user SET first_name = ?, last_name = ?, street = ?, number = ?, zip = ?, city = ?, country = ? WHERE id = ?";
         $stmt = $this->connect()->prepare($sql);
         $stmt->execute([$first_name, $last_name, $street, $number, $zip, $city, $country, $user_id]);
@@ -74,6 +74,4 @@ class User extends Connection
         echo 'User data saved successfully.';
         header('Refresh:1; url=order.php');
     }
-
-
 }

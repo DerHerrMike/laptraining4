@@ -1,6 +1,6 @@
 <?php
 $title = "Login";
-include './inc/header.php';
+include __DIR__ . '/inc/header.php';
 include './classes/userClass.php';
 ?>
 
@@ -10,6 +10,7 @@ include './classes/userClass.php';
         <h2>Login</h2>
         <br><br>
     </article>
+
     <div class="site-identity">
         <form class="form-signin" method="POST" action="">
             <input type="text" class="form-control" name="email" placeholder="Email">

@@ -1,6 +1,4 @@
 <?php
-//TODO: if nach oben stellen, damit keine Tabelle ausgegeben wird
-
 $title = 'Cart';
 include __DIR__ . '/inc/header.php';
 if (!isset($_SESSION['logged_in'])) {
@@ -13,7 +11,6 @@ $cart = new Cart();
 $resultSet = $cart->loadCartItemsbyUser($_SESSION['user_id']);
 $grandTotal = 0;
 ?>
-
     <div class="content">
     <article>
         <h2>Cart Overview</h2>
@@ -79,6 +76,5 @@ if (isset($_POST['order'])) {
 if (isset($_POST['delete'])) {
     $cart->removeItemFromCart($_SESSION['user_id'], $_POST['delete']);
 }
-
 include 'inc/footer.php';
 ?>

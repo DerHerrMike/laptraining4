@@ -1,10 +1,9 @@
 /* General Settings */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
+html, body {
 
-html,body{
-
-    margin:0;
+    margin: 0;
     font-family: 'Roboto', sans-serif;
 
     --bg_dark: #202020;
@@ -13,39 +12,40 @@ html,body{
     --color-white: #ffffff;
     --color-white-dark: #dddddd;
     --color-grey: #777777;
+    background-color: floralwhite;
 
 }
 
-.content{
-    width:75%;
-    height:50vh;
-    margin:90px auto 20px auto;
+.content {
+    width: 75%;
+    height: 50vh;
+    margin: 90px auto 20px auto;
     /* background-color:green; */
 }
 
-.container{
-    width:50%;
-    height:40vh;
-    margin:0px auto 0px auto;
+.container {
+    width: 50%;
+    height: 40vh;
+    margin: 0px auto 0px auto;
     /* background-color:green; */
 }
 
 /*Formular*/
 
-input{
-    display:block;
-    width:350px;
-    height:3vh;
-    margin:20px auto 20px auto;
+input {
+    display: block;
+    width: 350px;
+    height: 3vh;
+    margin: 20px auto 20px auto;
     border-radius: 10px;
 }
 
-button{
-    display:block;
-    width:250px;
-    height:5vh;
-    margin:20px auto 20px auto;
-    background:rebeccapurple;
+button {
+    display: block;
+    width: 250px;
+    height: 5vh;
+    margin: 20px auto 20px auto;
+    background: #2700be;
     border-radius: 10px;
 }
 
@@ -53,17 +53,18 @@ button{
     display: inline;
 }
 
-button:hover{
-    display:block;
-    width:250px;
-    height:5vh;
-    margin:20px auto 20px auto;
-    background:none;
-    color:limegreen;
-    cursor:pointer;
+button:hover {
+    display: block;
+    width: 250px;
+    height: 5vh;
+    margin: 20px auto 20px auto;
+    background: none;
+    color: limegreen;
+    cursor: pointer;
 }
 
 th, td {
+    background-color: floralwhite;
     border-collapse: collapse;
     border: 1px solid black;
     padding: 10px;
@@ -73,7 +74,9 @@ th, td {
 a {
     text-decoration: none;
     color: #000;
+
 }
+
 .site-header {
     border-bottom: 1px solid #ccc;
     padding: .5em 1em;
@@ -101,11 +104,12 @@ a {
 
 .footer {
     position: fixed;
-    height:1.4em;
+    height: 1.4em;
     width: 100%;
     bottom: 0;
     font-size: small;
-    background-color: slategrey;
+    background-color: black;
+    color: white;
     background-position: bottom;
     text-align: center;
 }
@@ -128,27 +132,27 @@ a {
     margin-right: auto;
 }
 
-.productThumb{
-    -webkit-box-shadow: 6px 3px 6px 0px rgba(0,0,0,0.75);
-    -moz-box-shadow: 6px 3px 6px 0px rgba(0,0,0,0.75);
-    box-shadow: 6px 3px 6px 0px rgba(0,0,0,0.75);
+.productThumb {
+    -webkit-box-shadow: 6px 3px 6px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 6px 3px 6px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: 6px 3px 6px 0px rgba(0, 0, 0, 0.75);
     margin: 10px;
 
 }
 
-.image{
+.image {
     height: 100px;
     margin: 5px auto;
     display: block;
 }
 
-.image_medium{
+.image_medium {
     height: 300px;
     margin: 5px auto;
     display: block;
 }
 
-.alert{
+.alert {
     margin-top: 10px;
     margin-bottom: 10px;
     padding: 10px;
@@ -156,18 +160,36 @@ a {
     border-radius: 5px;
     background-color: lightcoral;
 }
-.alert alert-danger{
-    margin-top: 10px; margin-bottom: 10px; padding: 10px; border: 1px solid #ccc; border-radius: 5px;
-}
-.success{
-    margin-top: 10px; margin-bottom: 10px; padding: 10px; border: 1px solid green; border-radius: 5px; background-color: limegreen;
-}
-.info{
-    margin-top: 10px; margin-bottom: 10px; padding: 10px; border: 1px solid antiquewhite; border-radius: 5px; background-color: slateblue; font-size: 25px;
+
+.alert alert-danger {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
 }
 
-.shopcontent{
-    width:75%;
+.success {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid green;
+    border-radius: 5px;
+    background-color: limegreen;
+}
+
+.info {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid antiquewhite;
+    border-radius: 5px;
+    background-color: slateblue;
+    font-size: 25px;
+}
+
+.shopcontent {
+    width: 75%;
     height: auto;
     min-height: 93vh;
     margin: 20px auto;
@@ -176,19 +198,18 @@ a {
     grid-template-columns: repeat(auto-fill, 200px);
 }
 
-h1{
+h1 {
     text-align: center;
     color: papayawhip;
 }
 
 .material-symbols-outlined {
-     font-variation-settings:
-             'FILL' 0,
-             'wght' 400,
-             'GRAD' 0,
-             'opsz' 48;
+    font-variation-settings: 'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 48;
     text-align: center;
- }
+}
 
 
 

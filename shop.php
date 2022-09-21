@@ -1,9 +1,8 @@
 <?php
 $title = "Shop";
-include './inc/header.php';
+include __DIR__ . '/inc/header.php';
 include 'classes/productClass.php';
 $product = new Product();
-
 ?>
     <div class="container">
         <article>
@@ -18,9 +17,7 @@ $product = new Product();
                     <th>Name</th>
                     <th>Image</th>
                     <th>Price</th>
-
                 </tr>
-
                 <?php $allProducts = $product->loadAllProducts();
                 foreach ($allProducts as $product) { ?>
                     <tr>
