@@ -65,6 +65,16 @@ class User extends Connection
         }
     }
 
+    /**
+     * @param $user_id
+     * @param $first_name
+     * @param $last_name
+     * @param $street
+     * @param $number
+     * @param $zip
+     * @param $city
+     * @param $country
+     */
     public function updateUserDetails($user_id, $first_name, $last_name, $street, $number, $zip, $city, $country)
     {
         $sql = "UPDATE user SET first_name = ?, last_name = ?, street = ?, number = ?, zip = ?, city = ?, country = ? WHERE id = ?";
