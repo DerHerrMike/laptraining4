@@ -1,5 +1,5 @@
 <?php
-$title = 'Order';
+$title = 'Profile';
 include __DIR__ . '/inc/head.php';
 if (!isset($_SESSION['logged_in'])) {
     echo "<div class='alert'>You have to be logged in to see this page!</div>";
