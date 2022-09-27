@@ -63,7 +63,3 @@ a.link {
     background: var(--color-grey);
     color: var(--color-white);
 }
-
-.content {
-    padding: 40px;
-}

@@ -61,6 +61,7 @@ $tmp = number_format($result['price'], 2, ",", ".");
                     <th>Price:</th>
                     <td>EUR <?php echo $tmp; ?></td>
                     <td><input type="text" name="price" value="<?php echo $price; ?>"</td>
+                </tr>
                 <tr>
                     <th>Status:</th>
                     <td><?php echo $status; ?></td>
