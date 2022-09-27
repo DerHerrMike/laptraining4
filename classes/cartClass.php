@@ -1,8 +1,13 @@
 <?php
 require_once __DIR__ . '/../inc/connection.php';
 
-class Cart extends Connection
+class Cart
 {
+
+    private function getTableName(): string
+    {
+        return "cart";
+    }
 
     /**
      * @param $user_id
@@ -14,15 +19,16 @@ class Cart extends Connection
     public function addToCart($user_id, $product_id, $product_name, $price, $quantity)
     {
 
-        $sql = "SELECT * FROM laptraining4.cart WHERE product_id = ? AND user_id = ?";
-        $stmt = $this->connect()->prepare($sql);
+        $sql = "SELECT * FROM " . $this->getTableName() . " WHERE product_id = ? AND user_id = ?";
+        $stmt = Connection::connect()->prepare($sql);
         $stmt->execute([$product_id, $user_id]);
         $result = $stmt->fetchAll();
         if (count($result) == 0) {
-            $sql = 'INSERT INTO laptraining4.cart (user_id, product_id, product_name, product_price, quantity) VALUES (?,?, ?, ?,?)';
-            $stmt = $this->connect()->prepare($sql);
+            $sql = "INSERT INTO " . $this->getTableName() . " (user_id, product_id, product_name, product_price, quantity) VALUES (?,?, ?, ?,?)";
+            $stmt = Connection::connect()->prepare($sql);
             $stmt->execute([$user_id, $product_id, $product_name, $price, $quantity]);
-            echo 'Item added successfully';
+            echo '<div class="success"> Item added successfully!</div>';
+            echo '<a class="black" href="shop.php">Click here if you are not redirected in 3 seconds!</a>';
             header('Refresh:1; url=shop.php');
         } else {
             $this->updateQuantity($quantity, $product_id, $user_id);
@@ -36,10 +42,11 @@ class Cart extends Connection
      */
     private function updateQuantity($quantity, $product_id, $user_id)
     {
-        $sql = 'UPDATE laptraining4.cart SET quantity = quantity + ? WHERE product_id = ? AND user_id = ?';
-        $stmt = $this->connect()->prepare($sql);
+        $sql = "UPDATE " . $this->getTableName() . " SET quantity = quantity + ? WHERE product_id = ? AND user_id = ?";
+        $stmt = Connection::connect()->prepare($sql);
         $stmt->execute([$quantity, $product_id, $user_id]);
-        echo 'Quantity updated';
+        echo '<div class="success"> Quantity updated successfully!</div>';
+        echo '<a class="black" href="shop.php">Click here if you are not redirected in 3 seconds!</a>';
         header('Refresh:1; url=shop.php');
     }
 
@@ -49,8 +56,8 @@ class Cart extends Connection
      */
     public function loadCartItemsbyUser($user_id): bool|array
     {
-        $sql = 'SELECT * FROM laptraining4.cart WHERE user_id = ?';
-        $stmt = $this->connect()->prepare($sql);
+        $sql = "SELECT * FROM " . $this->getTableName() . " WHERE user_id = ?";
+        $stmt = Connection::connect()->prepare($sql);
         $stmt->execute([$user_id]);
         return $stmt->fetchAll();
     }
@@ -61,18 +68,18 @@ class Cart extends Connection
      */
     public function order($user_id, $date)
     {
-        $sql = 'SELECT * FROM laptraining4.cart WHERE user_id = ?';
-        $stmt = $this->connect()->prepare($sql);
+        $sql = "SELECT * FROM " . $this->getTableName() . " WHERE user_id = ?";
+        $stmt = Connection::connect()->prepare($sql);
         $stmt->execute([$user_id]);
         $result = $stmt->fetchAll();
         foreach ($result as $row) {
-            $sql = 'INSERT INTO laptraining4.orders (user_id, product_id, product_name, product_price, quantity, date) VALUES (?, ?, ?, ?, ?, ?)';
-            $stmt = $this->connect()->prepare($sql);
+            $sql = 'INSERT INTO orders (user_id, product_id, product_name, product_price, quantity, date) VALUES (?, ?, ?, ?, ?, ?)';
+            $stmt = Connection::connect()->prepare($sql);
             $stmt->execute([$user_id, $row['product_id'], $row['product_name'], $row['product_price'], $row['quantity'], $date]);
             $this->updateUnitsSold($row['quantity'], $row['product_id']);
         }
         $this->emptyCart($user_id);
-
+        echo '<a class="black" href="order.php">Click here if you are not redirected in 3 seconds!</a>';
         header('Refresh: 1; url=order.php');
     }
 
@@ -81,8 +88,8 @@ class Cart extends Connection
      */
     private function emptyCart($user_id)
     {
-        $sql = 'DELETE FROM laptraining4.cart WHERE user_id = ?';
-        $stmt = $this->connect()->prepare($sql);
+        $sql = "DELETE FROM " . $this->getTableName() . " WHERE user_id = ?";
+        $stmt =Connection::connect()->prepare($sql);
         $stmt->execute([$user_id]);
     }
 
@@ -92,8 +99,8 @@ class Cart extends Connection
      */
     private function updateUnitsSold($quantity, $product_id)
     {
-        $sql = 'UPDATE laptraining4.product SET units_sold = units_sold + ? WHERE id =?';
-        $stmt = $this->connect()->prepare($sql);
+        $sql = "UPDATE product SET units_sold=units_sold + ? WHERE id=?";
+        $stmt = Connection::connect()->prepare($sql);
         $stmt->execute([$quantity, $product_id]);
     }
 
@@ -103,9 +110,10 @@ class Cart extends Connection
      */
     public function removeItemFromCart($user_id, $product_id)
     {
-        $sql = 'DELETE FROM cart WHERE user_id = ? AND product_id = ?';
-        $stmt = $this->connect()->prepare($sql);
+        $sql = "DELETE FROM " . $this->getTableName() . " WHERE user_id = ? AND product_id = ?";
+        $stmt = Connection::connect()->prepare($sql);
         $stmt->execute([$user_id, $product_id]);
+        echo '<a class="black" href="cart.php">Click here if you are not redirected in 3 seconds!</a>';
         header('Refresh:1; url=cart.php');
     }
 }

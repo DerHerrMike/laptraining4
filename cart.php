@@ -1,9 +1,10 @@
 <?php
 $title = 'Cart';
-include __DIR__ . '/inc/header.php';
+include __DIR__ . '/inc/head.php';
 if (!isset($_SESSION['logged_in'])) {
     echo "<div class='alert'>You have to be logged in to see this page!</div>";
     header("Refresh:2; Location:login.php");
+    die();
 }
 include 'classes/productClass.php';
 include 'classes/cartClass.php';
@@ -11,14 +12,13 @@ $cart = new Cart();
 $resultSet = $cart->loadCartItemsbyUser($_SESSION['user_id']);
 $grandTotal = 0;
 ?>
-    <div class="content">
-    <article>
+    <div class="cont">
+     <article>
         <h2>Cart Overview</h2>
-    </article>
-    <br><br>
-    <div class="container_small">
+     </article>
+
 <?php if ($resultSet) { ?>
-    <table style="background: white; border: 1px solid #ccc; border-radius: 3px; padding: 2px;">
+    <table class="cont-table-low">
         <tr>
             <th>Name</th>
             <th>Price per unit</th>
@@ -29,12 +29,15 @@ $grandTotal = 0;
         <?php foreach ($resultSet as $result) {
             $total_price = $result['quantity'] * $result['product_price'];
             $grandTotal = $grandTotal + $total_price;
+            $total_formatted = number_format($total_price, 2, ",", ".");
+            $grand_formatted = number_format($grandTotal, 2, ",", ".");
+            $tmp = number_format($result['product_price'], 2, ",", ".");
             ?>
             <tr>
                 <td><?php echo $result['product_name'] ?></td>
-                <td>EUR <?php echo $result['product_price'] ?></td>
+                <td>EUR <?php echo $tmp ?></td>
                 <td><?php echo $result['quantity'] ?></td>
-                <td>EUR <?php echo $total_price ?></td>
+                <td>EUR <?php echo $total_formatted ?></td>
                 <td>
                     <form action="" method="post">
                         <button type="submit" name="delete" value=" <?php echo $result['product_id'] ?> "><span
@@ -49,22 +52,17 @@ $grandTotal = 0;
             <td> Grand Total:</td>
             <td></td>
             <td></td>
-            <td>EUR <?php echo $grandTotal ?> </td>
+            <td>EUR <?php echo $grand_formatted ?> </td>
     </table>
-
-    <div class="productcontent">
+    <br><br>
         <form action="#" method="post">
             <button type="submit" name="order">Order now</button>
         </form>
     </div>
-    </div>
-    <br><br>
-    </div>
 <?php } else { ?>
     <br><br>
     <div class="info">Your cart is currently empty!</div>
-    </div>
-    <br><br>
+        <br><br>
     </div>
 <?php } ?>
 

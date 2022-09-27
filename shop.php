@@ -1,18 +1,14 @@
 <?php
 $title = "Shop";
-include __DIR__ . '/inc/header.php';
+include __DIR__ . '/inc/head.php';
 include 'classes/productClass.php';
 $product = new Product();
 ?>
-    <div class="container">
+    <div class="cont">
         <article>
-            <br><br>
             <h2>Shop</h2>
         </article>
-        <br><br>
-        <div class="productcontent">
-            <table style="background: white; border: 1px solid #ccc; border-radius: 3px; padding: 10px;">
-
+            <table class="cont-table-low" >
                 <tr>
                     <th>Name</th>
                     <th>Image</th>
@@ -28,14 +24,13 @@ $product = new Product();
                                href="product.php?pid=<?php echo $product['id']; ?>">
                                 <img class="image" src="/ressources/<?php echo $product['image'] ?>"></a></td>
                         <td><a class="link"
-                               href="product.php?pid=<?php echo $product['id']; ?>">EUR <?php echo $product['price'] ?></a>
+                               href="product.php?pid=<?php echo $product['id']; ?>">EUR <?php $tmp = number_format($product['price'], 2, ",", "."); echo $tmp;?></a>
                         </td>
                     </tr>
                 <?php } ?>
             </table>
             <br><br>
         </div>
-    </div>
 
 <?php
 include './inc/footer.php';

@@ -4,7 +4,7 @@ include_once 'config.php';
 class Connection
 {
 
-    public function connect()
+    static function connect()
     {
         try {
             $connection = new PDO("mysql:host=" . DBHOST . ";dbname=" . DBNAME . ";user=" . DBUSER . ";password=" . DBPASS );

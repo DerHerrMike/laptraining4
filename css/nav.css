@@ -3,9 +3,9 @@
     height: 7vh;
     background: var(--bg_dark);
     display: grid;
-    grid-template-columns: 15% 30% 30% 25%;
+    grid-template-columns: 15% 56% 29%;
     grid-template-areas:
-    "tlogo mainlinks mainlinks userlinks";
+    "logo pagel user";
 }
 
 a {
@@ -18,22 +18,22 @@ a.link {
     text-decoration: none;
 }
 
-.textlogo {
-    grid-area: tlogo;
+.logo {
+    grid-area: logo;
     text-align: center;
 }
 
-.textlogo a {
+.logo a {
     font-size: 26px;
     line-height: 7vh;
 }
 
-.mainlinks {
-    grid-area: mainlinks;
+.pagelinks {
+    grid-area: pagel;
     text-align: center;
 }
 
-.mainlinks a {
+.pagelinks a {
     display: inline-block;
     height: 7vh;
     font-size: 16px;
@@ -41,13 +41,13 @@ a.link {
     padding: 0px 20px;
 }
 
-.mainlinks a:hover {
+.pagelinks a:hover {
     background: var(--color-grey);
     color: var(--color-white);
 }
 
 .userlinks {
-    grid-area: userlinks;
+    grid-area: user;
     text-align: center;
 }
 

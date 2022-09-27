@@ -1,13 +1,12 @@
 <?php
 $title = 'Contact';
-include __DIR__ . '/inc/header.php';
+include __DIR__ . '/inc/head.php';
 
 ?>
 
-    <div class="container">
-        <br><br>
+    <div class="cont">
         <article>
-            <h2>Admin Panel Products</h2>
+            <h2>Contact</h2>
         </article>
         <br><br>
         <div><p>This page is a stub</p></div>
